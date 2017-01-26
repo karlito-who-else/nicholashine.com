@@ -1,0 +1,101 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/google-youtube/google-youtube.html">
+<link rel="import" href="../bower_components/iron-image/iron-image.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="nicholashine-about">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+      }
+    </style>
+
+    <header class="large">
+      <iron-image
+        fade
+        preload
+        src="/images/NicholasHineSiberi2013-5616x3744.jpeg"
+        sizing="cover">
+      </iron-image>
+    </header>
+
+    <section>
+      <p>A seasoned camera operator with over 10 years of professional experience and a strong technical background, I am a fast learner with a creative eye for detail and dedication to quality work. Although based in London, I have worked all over the UK, Europe, Asia and Africa.</p>
+      <p>A collaborative team player who loves a challenge, I am used to working in ever changing environments and under pressure. As a self-motivated individual, I enjoy trying new things and I like to learn. I strive to do my best no matter what the task; I will never quit and I will always make sure to deliver on a promise. I enjoy my work immensely and bring my skills, energy and enthusiasm to every job that I am involved with.</p>
+      <p>My recent work includes Jahméne's new film, "I Wish", for which I was DP and which I also edited for Peace One Day.</p>
+    </section>
+
+    <figure>
+      <google-youtube
+        video-id="a7FONPHnE7I"
+        chromeless
+        fluid>
+      </google-youtube>
+
+      <figcaption>
+        <h1>Jahmene - I Wish</h1>
+        <p>DP and editor for Jahméne's new film, I Wish, on behalf of Peace One Day</p>
+        <time datetime="2016">2016</time>
+      </figcaption>
+
+    </figure>
+
+    <figure>
+      <google-youtube
+        video-id="YLJ-qJ9MpgM"
+        chromeless
+        fluid>
+      </google-youtube>
+
+      <figcaption>
+        <h1>Hope Classic Rally</h1>
+        <p>Director and camera operator on this film for the 2016 Hope Classic Rally</p>
+        <time datetime="2016">2016</time>
+      </figcaption>
+
+    </figure>
+
+    <section id="work">
+      <a href="/work">View more of my work</a>
+    </section>
+
+    <section id="contact">
+      <h1>Contact</h1>
+      <a href="mailto:hine.nicholas@gmail.com">hine.nicholas@gmail.com</a>
+      <a href="tel:+447968324678">+44 (0) 7968 324678</a>
+    </section>
+
+    <section id="pages">
+      <a href="/stills">Stills</a>
+      <a href="/kit">Kit</a>
+    </section>
+
+  </template>
+
+  <script>
+    class NicholasHineAbout extends Polymer.Element {
+      static get is() { return 'nicholashine-about'; }
+
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        super.connectedCallback();
+      }
+
+    }
+    customElements.define(NicholasHineAbout.is, NicholasHineAbout);
+  </script>
+</dom-module>

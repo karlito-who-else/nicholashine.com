@@ -1,0 +1,87 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/iron-image/iron-image.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="nicholashine-kit">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+      }
+    </style>
+
+    <header class="small">
+      <!--<iron-image
+        fade
+        preload
+        src="http://cdn2.insidermonkey.com/blog/wp-content/uploads/2015/08/shutterstock_259427471-750x492.jpg"
+        sizing="cover">
+      </iron-image>-->
+
+      <!--<iron-image
+        fade
+        preload
+        src="https://www.thebroadcastbridge.com/cache/uploads/content_images/zeiss-lenses_789_329_70_s.jpg"
+        sizing="cover">
+      </iron-image>-->
+
+      <iron-image
+        fade
+        preload
+        src="http://techness.nl/wp-content/uploads/2016/09/Iphone-lens-techness-artikel.jpg"
+        sizing="cover">
+      </iron-image>
+
+      <!--<iron-image
+        fade
+        preload
+        src="http://www.cameraworld.co.uk/wp/wp-content/uploads/2016/08/NIKKOR-LENSES.jpg"
+        sizing="cover">
+      </iron-image>-->
+
+    </header>
+
+    <section>
+      <ul>
+        <li>SONY NEX-FS700 w/ Raincover</li>
+        <li>Canon 70-200 L f4, Canon 24-105 L f4, Nikon 80-200 f2.8, Sigma 18-35 f1.8</li>
+        <li>Convergent Design Odyssey 7Q + monitor w/ Full RAW option</li>
+        <li>Metabones Canon EF to Sony E Mount T Speedbooster</li>
+        <li>Vinten Vision 10 and Vinten Vision 3 Tripods</li>
+        <li>Kessler Crane Philip Bloom Pocket Dolly 3ft Slider w/ motion control kit</li>
+        <li>Rotolight Anova Pro Bi-colour professional LED Light panel kit w/ stand</li>
+        <li>INTERFIT litepanel kit x 2 w/ stands</li>
+        <li>Aputure </li>
+        <li>Sennheiser G3 Radio Mic w/ Sankin COS 11D</li>
+        <li>Marshall 5" monitor</li>
+        <li>Panasonic GH4 kit</li>
+        <li>Kia Sportage for transport</li>
+      </ul>
+    </section>
+  </template>
+
+  <script>
+    class NicholasHineKit extends Polymer.Element {
+      static get is() { return 'nicholashine-kit'; }
+
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        super.connectedCallback();
+      }
+    }
+    customElements.define(NicholasHineKit.is, NicholasHineKit);
+  </script>
+</dom-module>

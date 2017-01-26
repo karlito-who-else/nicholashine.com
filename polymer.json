@@ -1,0 +1,19 @@
+{
+  "entrypoint": "index.html",
+  "shell": "src/nicholashine-app.html",
+  "fragments": [
+    "src/nicholashine-view1.html",
+    "src/nicholashine-view2.html",
+    "src/nicholashine-view3.html",
+    "src/nicholashine-view404.html"
+  ],
+  "sourceGlobs": [
+   "src/**/*",
+   "images/**/*",
+   "bower.json"
+  ],
+  "includeDependencies": [
+    "manifest.json",
+    "bower_components/webcomponentsjs/webcomponents-lite.min.js"
+  ]
+}

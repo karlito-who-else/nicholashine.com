@@ -1,0 +1,179 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../bower_components/app-route/app-location.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/social-media-icons/social-media-icons.html">
+<link rel="import" href="nicholashine-icons.html">
+
+<dom-module id="nicholashine-app">
+  <template>
+    <style>
+      :host {
+        --app-primary-color: white;
+        --app-secondary-color: black;
+
+        display: block;
+      }
+
+      app-header-layout {
+        /*background-color: transparent;*/
+      }
+
+      app-header {
+        background-color: var(--app-primary-color);
+        color: var(--app-secondary-color);
+        /*background-color: transparent;*/
+        /*color: #000;*/
+
+        --app-header-background-front-layer: {
+          background-color: transparent;
+        }
+        --app-header-background-rear-layer: {
+          background-color: transparent;
+        }
+      }
+
+      app-header paper-icon-button {
+        --paper-icon-button-ink-color: white;
+      }
+
+      app-header app-toolbar {
+        background-color: transparent;
+      }
+
+      app-header app-toolbar .social-media-link {
+        display: block;
+      }
+
+      app-header app-toolbar social-media-icons {
+        display: flex;
+      }
+
+      app-header app-toolbar .social-media-link:not(:first-of-type) {
+        margin-left: 1rem;
+      }
+
+      .drawer-list {
+        margin: 0 20px;
+      }
+
+      .drawer-list a {
+        color: var(--app-secondary-color);
+        display: block;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        text-decoration: none;
+        line-height: 3;
+      }
+
+      .drawer-list a.iron-selected {
+        color: black;
+
+        font-weight: bold;
+      }
+    </style>
+
+    <app-location route="{{route}}"></app-location>
+    <app-route
+        route="{{route}}"
+        pattern="/:page"
+        data="{{routeData}}"
+        tail="{{subroute}}"></app-route>
+
+    <app-drawer-layout force-narrow fullbleed>
+      <!-- Drawer content -->
+      <app-drawer slot="drawer">
+        <app-toolbar>Menu</app-toolbar>
+        <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+          <a name="about" href="/about">About</a>
+          <a name="work" href="/work">Work</a>
+          <a name="stills" href="/stills">Stills</a>
+          <a name="kit" href="/kit">Kit</a>
+        </iron-selector>
+      </app-drawer>
+
+      <!-- Main content -->
+      <app-header-layout has-scrolling-region>
+
+        <app-header slot="header" fixed>
+          <app-toolbar>
+            <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
+            <div main-title>Nicholas Hine</div>
+            <a class="social-media-link" target="_blank" href="http://vimeo.com/nicholashine">
+              <social-media-icons color="lightgrey" icon="vimeo"></social-media-icons>
+            </a>
+            <a class="social-media-link" target="_blank" href="https://uk.linkedin.com/in/nicholas-hine-3a26bb">
+              <social-media-icons color="lightgrey" icon="linkedin"></social-media-icons>
+            </a>
+          </app-toolbar>
+        </app-header>
+
+        <iron-pages
+            selected="[[page]]"
+            attr-for-selected="name"
+            fallback-selection="view404"
+            role="main">
+          <nicholashine-about name="about"></nicholashine-about>
+          <nicholashine-work name="work"></nicholashine-work>
+          <nicholashine-stills name="stills"></nicholashine-stills>
+          <nicholashine-kit name="kit"></nicholashine-kit>
+          <nicholashine-view404 name="view404"></nicholashine-view404>
+        </iron-pages>
+      </app-header-layout>
+    </app-drawer-layout>
+  </template>
+
+  <script>
+    class NicholasHineApp extends Polymer.Element {
+      static get is() { return 'nicholashine-app'; }
+
+      static get config() {
+        return {
+          properties: {
+            page: {
+              type: String,
+              reflectToAttribute: true,
+              observer: '_pageChanged'
+            }
+          },
+          observers: [
+            '_routePageChanged(routeData.page)'
+          ],
+        }
+      }
+
+      _routePageChanged(page) {
+        this.page = page || 'about';
+      }
+
+      _pageChanged(page) {
+        // Load page import on demand. Show 404 page if fails
+        var resolvedPageUrl = this.resolveUrl('nicholashine-' + page + '.html');
+        Polymer.Utils.importHref(resolvedPageUrl, null, ()=>this._showPage404(), true);
+      }
+
+      _showPage404() {
+        this.page = 'view404';
+      }
+    }
+    customElements.define(NicholasHineApp.is, NicholasHineApp);
+  </script>
+</dom-module>

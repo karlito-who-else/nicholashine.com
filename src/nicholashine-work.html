@@ -1,0 +1,98 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="nicholashine-work">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+      }
+    </style>
+
+    <figure>
+      <google-youtube
+        video-id="v1LyhLl_bwE"
+        chromeless
+        fluid>
+      </google-youtube>
+
+      <figcaption>
+        <h1>Peace Talk with John Battsek</h1>
+        <p>An interview I shot with award-winning Producer John Battsek</p>
+        <time datetime="2016">2016</time>
+      </figcaption>
+    </figure>
+
+    <figure>
+      <google-youtube
+        video-id="-BHUL_xYAVM"
+        chromeless
+        fluid>
+      </google-youtube>
+
+      <figcaption>
+        <h1>Peace Talk with Richard Reedk</h1>
+        <p>An interview I shot with Richard Reed, co-founder of Innocent Drinks</p>
+        <time datetime="2016">2016</time>
+      </figcaption>
+    </figure>
+  
+    <figure>
+      <google-youtube
+        video-id="UaYQckabhBk"
+        chromeless
+        fluid>
+      </google-youtube>
+
+      <figcaption>
+        <h1>Peace One Day: The Journey</h1>
+        <p>Editor of The Journey for Peace One Day</p>
+        <time datetime="2016">2016</time>
+      </figcaption>
+    </figure>
+
+    <figure>
+      <google-youtube
+        video-id="5qtjG9hdkVI"
+        chromeless
+        fluid>
+      </google-youtube>
+
+      <figcaption>
+        <h1>Introduction to Peace One Day</h1>
+        <p>Editor of Peace One Day's Introduction Film</p>
+        <time datetime="2016">2016</time>
+      </figcaption>
+    </figure>
+
+    <section id="work">
+      <a href="http://vimeo.com/nicholashine" target="_blank">View more of my work on Vimeo</a>
+    </section>
+
+  </template>
+
+  <script>
+    class NicholasHineWork extends Polymer.Element {
+      static get is() { return 'nicholashine-work'; }
+
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        super.connectedCallback();
+      }
+    }
+    customElements.define(NicholasHineWork.is, NicholasHineWork);
+  </script>
+</dom-module>
