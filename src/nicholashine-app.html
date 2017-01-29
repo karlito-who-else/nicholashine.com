@@ -118,10 +118,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
             <div main-title>Nicholas Hine</div>
             <a class="social-media-link" target="_blank" href="http://vimeo.com/nicholashine">
-              <social-media-icons color="lightgrey" icon="vimeo"></social-media-icons>
+              <social-media-icons color="black" size="16" icon="vimeo"></social-media-icons>
             </a>
             <a class="social-media-link" target="_blank" href="https://uk.linkedin.com/in/nicholas-hine-3a26bb">
-              <social-media-icons color="lightgrey" icon="linkedin"></social-media-icons>
+              <social-media-icons color="black" size="16" icon="linkedin"></social-media-icons>
             </a>
           </app-toolbar>
         </app-header>
@@ -173,6 +173,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       _showPage404() {
         this.page = 'view404';
       }
+
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        super.connectedCallback();
+
+        window.requestAnimationFrame(() => {
+          const drawer = this.shadowRoot.querySelector('app-drawer');
+          const ironSelector = this.shadowRoot.querySelector('app-drawer iron-selector');
+
+          ironSelector.addEventListener('iron-select', () => {
+            drawer.close();
+          });
+        });
+      }
+
     }
     customElements.define(NicholasHineApp.is, NicholasHineApp);
   </script>

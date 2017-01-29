@@ -2,10 +2,11 @@
   "entrypoint": "index.html",
   "shell": "src/nicholashine-app.html",
   "fragments": [
-    "src/nicholashine-view1.html",
-    "src/nicholashine-view2.html",
-    "src/nicholashine-view3.html",
-    "src/nicholashine-view404.html"
+    "src/nicholashine-about.html",
+    "src/nicholashine-kit.html",
+    "src/nicholashine-stills.html",
+    "src/nicholashine-view404.html",
+    "src/nicholashine-work.html"
   ],
   "sourceGlobs": [
    "src/**/*",
@@ -14,6 +15,6 @@
   ],
   "includeDependencies": [
     "manifest.json",
-    "bower_components/webcomponentsjs/webcomponents-lite.min.js"
+    "bower_components/webcomponentsjs/webcomponents-lite.js"
   ]
 }

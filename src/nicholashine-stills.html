@@ -9,6 +9,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/app-layout/app-grid/app-grid-style.html">
+<link rel="import" href="../bower_components/iron-media-query/iron-media-query.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="nicholashine-stills">
@@ -17,16 +19,147 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       :host {
         display: block;
       }
+
+      /*@supports (display: grid) {
+        .app-grid[wide-layout] {
+          display: grid;
+          grid-template-columns: 70% 30%;
+          grid-gap: 2rem;
+        }
+      }
+
+      @supports not (display: grid) {
+        .wrapper {
+          display: flex;
+        }
+
+        .main-column {
+          width: 70%;
+          padding-right: 2rem;
+        }
+
+        .sidebar {
+          width: 30%;
+        }
+      }*/
     </style>
 
-    <section>
+    <style include="app-grid-style">
+      :host {
+        /*height: 100%;*/
+        height: 100vh;
+      }
 
-    </section>
+      .app-grid {
+        --app-grid-columns: 1;
+        /*--app-grid-item-height: 56.25vw;*/
+        --app-grid-item-height: auto;
+        /*--app-grid-item-height: 100%;*/
+        height: 100%;
+      }
+
+      .app-grid[wide-layout] {
+        --app-grid-columns: 3;
+        /*--app-grid-item-height: 18.74vw;*/
+        /*--app-grid-item-height: 56.25%;*/
+        --app-grid-item-height: 66.66%;
+      }
+
+      figure {
+        margin: 0;
+        position: relative;
+      }
+
+      figure img,
+      figure iron-image {
+        height: auto;
+        pointer-events: none;
+        width: 100%;
+      }
+
+      .app-grid[wide-layout] figure img {
+        object-fit: cover;
+      }
+
+      .app-grid[wide-layout] figure img,
+      .app-grid[wide-layout] figure iron-image {
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        transition-duration: var(--active-transition-duration);
+        transition-property: filter;
+        transition-timing-function: var(--active-transition-timing-function);
+        width: 100%;
+      }
+
+      .app-grid[wide-layout] figure:not(:focus):not(:hover) img,
+      .app-grid[wide-layout] figure:not(:focus):not(:hover) iron-image {
+        filter: grayscale(1);
+      }
+    </style>
+
+    <iron-media-query query="(min-width: 40rem)" query-matches="{{wide}}"></iron-media-query>
+
+    <div class="app-grid" wide-layout$="[[wide]]">
+
+      <figure>
+        <img src="/images/_DSC0175-4912x3264.jpg" alt="Lorem ipsum" />
+      </figure>
+
+      <figure>
+        <img src="/images/64b03e2121f44a99af7015baa3a75dca-600x800.dm.edit_lP1BDN.jpg" alt="Lorem ipsum" style="object-position: top;" />
+      </figure>
+
+      <figure>
+        <img src="/images/DSCF0040-4288x2848.jpg" alt="Lorem ipsum" />
+      </figure>
+
+      <figure>
+        <img src="/images/IMG_0747-600x800.JPG" alt="Lorem ipsum" style="object-position: top;" />
+      </figure>
+
+      <figure>
+        <img src="/images/IMG_0830-2448x3264.JPG" alt="Lorem ipsum" />
+      </figure>
+
+      <figure>
+        <img src="/images/IMG_1168-2448x3264.JPG" alt="Lorem ipsum" />
+      </figure>
+
+      <figure>
+        <img src="/images/IMG_7420-640x480.JPG" alt="Lorem ipsum" />
+      </figure>
+
+      <figure>
+        <img src="/images/NicholasHineSiberi2013-5616x3744.jpg" alt="Lorem ipsum" />
+      </figure>
+
+      <figure>
+        <img src="/images/October 27, 2012-IMG_0124LONDON 2012-567x850.jpg" alt="Lorem ipsum" style="object-position: top;" />
+      </figure>
+
+    </div>
+
   </template>
 
   <script>
     class NicholasHineStills extends Polymer.Element {
       static get is() { return 'nicholashine-stills'; }
+
+      static get config() {
+        return {
+          properties: {
+            wide: {
+              type: String,
+              notify: true,
+              reflectToAttribute: true,
+              observer: 'setWideLayout',
+              value: false
+            }
+          }
+        }
+      }
 
       constructor() {
         super();
@@ -34,6 +167,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       connectedCallback() {
         super.connectedCallback();
+      }
+
+      setWideLayout() {
+        window.requestAnimationFrame(() => {
+          let images = this.shadowRoot.querySelectorAll('iron-image');
+
+          // console.log('this.shadowRoot', this.shadowRoot);
+          // console.log('this.wide', this.wide);
+          // console.log('images', images);
+
+          images.forEach((element) => {
+            if (this.wide === true) {
+              element.sizing = "cover";
+            } else {
+              element.sizing = null;
+            }
+
+            console.log('element', element);
+          });
+        });
       }
     }
     customElements.define(NicholasHineStills.is, NicholasHineStills);
